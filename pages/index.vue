@@ -1,44 +1,53 @@
 <template>
-  <div class="container">
-    <div>
-      <Logo />
-      <h1 class="title">
-        seakun-oms
-      </h1>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--green"
-        >
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--grey"
-        >
-          GitHub
-        </a>
+  <div>
+    <div class="layout">
+      <div class="layout__left">
+        <SideBar/>
+      </div>
+      <div class="layout__right">
+        <div class="content">
+          <div>
+            <h1 class="title">
+              seakun-oms
+            </h1>
+            <div class="links">
+              <a
+                target="_blank"
+                rel="noopener noreferrer"
+                class="button--green"
+              >
+                Pilih menu pada Sidebar disamping
+              </a>
+            </div>
+          </div>
+        </div> 
       </div>
     </div>
   </div>
 </template>
 
 <script>
-export default {}
+import SideBar from '~/components/mollecules/SideBar'
+export default {
+  components: {
+    SideBar,
+  }
+}
 </script>
 
-<style>
-.container {
-  margin: 0 auto;
-  min-height: 100vh;
+<style lang="scss" scoped>
+.layout {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
+  &__left {
+    width: 26%;
+  }
+  &__right {
+    width: 74%;
+  }
+}
+
+.content {
+  padding: 16px;
 }
 
 .title {
