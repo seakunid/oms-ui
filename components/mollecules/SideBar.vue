@@ -2,20 +2,30 @@
     <div align="left" class="sidebar">
         <ul class="list-group">
             <li class="list-group-item">
-                <p class="label" @click="netflix.isOpen = !netflix.isOpen">Netflix</p>
+                <p class="label" @click.prevent="netflix.isOpen = !netflix.isOpen">Netflix</p>
                 <transition name="slide-fade">
                     <ul class="sidebar__child" v-if="netflix.isOpen">
                         <li class="list-group-item child-list">
-                            <nuxt-link to="/created-account">Send Created Netflix Account</nuxt-link>
+                            <nuxt-link to="/created-account?provider=Netflix">Send Created Netflix Account</nuxt-link>
                         </li>
                         <li class="list-group-item child-list">
-                            <nuxt-link to="/billing">Send Billing</nuxt-link>
+                            <nuxt-link to="/billing?provider=Netflix">Send Billing</nuxt-link>
                         </li>
                     </ul>
                 </transition>
             </li>
             <li class="list-group-item">
-                <p class="label">Spotify</p>
+                <p class="label" @click.prevent="spotify.isOpen = !spotify.isOpen">Spotify</p>
+                <transition name="slide-fade">
+                    <ul class="sidebar__child" v-if="spotify.isOpen">
+                        <li class="list-group-item child-list">
+                            <nuxt-link to="/created-account?provider=Spotify">Send Created Spotify Account</nuxt-link>
+                        </li>
+                        <li class="list-group-item child-list">
+                            <nuxt-link to="/billing?provider=Spotify">Send Billing</nuxt-link>
+                        </li>
+                    </ul>
+                </transition>
             </li>
         </ul>
     </div>
@@ -28,7 +38,11 @@ export default {
             netflix: {
                 isOpen: true,
                 active: true
-            }
+            },
+            spotify: {
+                isOpen: false,
+                active: true
+            },
         }
     }
 }

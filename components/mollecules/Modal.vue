@@ -1,10 +1,10 @@
 <template>
-    <div v-if="showPacket" class="modal fade show" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" >
+    <div v-if="openModal" class="modal fade show" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" >
         <div class="modal-dialog modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">{{title}}</h5>
-                    <button @click="$emit('close-modal')" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <button @click="$emit('closeModal')" type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span>&times;</span>
                     </button>
                 </div>
@@ -12,8 +12,8 @@
                     <slot></slot>
                 </div>
                 <div class="modal-footer" v-if="useFooter">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">{{secondaryBtn}}</button>
-                    <button type="button" class="btn btn-primary">{{primaryBtn}}</button>
+                    <button type="button" class="btn btn-cancel" data-dismiss="modal" @click="$emit('clickCancel')">{{secondaryBtn}}</button>
+                    <button type="button" class="btn btn-secondary" @click="$emit('clickOk')">{{primaryBtn}}</button>
                 </div>
             </div>
         </div>
@@ -23,8 +23,11 @@
 <script>
 export default {
     props: {
-        showPacket: Boolean,
-        useFooter: Boolean,
+        openModal: Boolean,
+        useFooter: {
+            type: Boolean,
+            default: false
+        },
         title: {
             type: String,
             default: 'Modal'
@@ -48,9 +51,15 @@ export default {
 .modal-body {
     padding: 0px!important;
 }
+.btn {
+    min-width: 6rem;
+}
 @media (max-width: 800px) {
     .modal-dialog {
         max-width: auto!important;
     }
+}
+.show {
+    display: block!important;
 }
 </style>

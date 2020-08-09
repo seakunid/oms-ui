@@ -1,9 +1,9 @@
 body {
-    font-family: 'Montserrat', serif !important;
+    font-family: 'Nunito', serif !important;
 }
   
 table {
-    font-family: 'Montserrat', serif !important;
+    font-family: 'Nunito', serif !important;
 }
   
 h4 {
@@ -38,6 +38,18 @@ button {
     }
     &:focus {
       background-color: #8a7aae!important;
+    }
+}
+
+.btn-cancel {
+    background-color: white!important;
+    color: #53417b !important;
+    border-color: #53417b!important;
+    &:active {
+      background-color: silver!important;
+    }
+    &:focus {
+      background-color: silver!important;
     }
 }
   
