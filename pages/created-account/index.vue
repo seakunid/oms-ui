@@ -179,7 +179,7 @@ export default {
         pin: this.pin,
         billing_date: this.billing_date
       }
-      axios.post('http://localhost:4001/created-account', payload)
+      axios.post('https://seakun-mail-api.herokuapp.com/created-account', payload)
       .then(res => {
         if (res) {
           this.isDisableBtn = false
