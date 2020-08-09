@@ -172,6 +172,7 @@ export default {
     postRegisteredUser() {
       let payload = {
         name: this.name,
+        email: this.email,
         packet: this.packet,
         provider: this.provider,
         username: this.username,

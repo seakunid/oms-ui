@@ -1,36 +1,83 @@
 <template>
   <div>
-    <div class="layout">
-      <div class="layout__left">
-        <SideBar/>
-      </div>
-      <div class="layout__right">
-        <div class="content">
-          <div>
-            <h1 class="title">
-              seakun-oms
-            </h1>
-            <div class="links">
-              <a
-                target="_blank"
-                rel="noopener noreferrer"
-                class="button--green"
-              >
-                Pilih menu pada Sidebar disamping
-              </a>
-            </div>
-          </div>
-        </div> 
+    <div v-if="isLoggedIn">
+      <HomepageAfterLogin/>
+    </div>
+    <div v-else>
+      <div class="container">
+        <form>
+          <input v-model="username" type="text" id="username" name="username" class="form-control" placeholder="username" style="margin: 16px 0px">
+          <input v-model="password" type="password" id="password" name="password" class="form-control" placeholder="password" style="margin: 16px 0px">
+          <p v-if="errorMsg">{{errorMsg}}</p>
+          <button class="btn btn-primary" @click.prevent="clickLogin" :disabled="isDisableBtn" style="min-width: 6rem;">
+            <span v-if="isDisableBtn" class="spinner-border spinner-border-sm text-dark" role="status" aria-hidden="true"></span>
+            Masuk
+          </button>
+        </form>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import SideBar from '~/components/mollecules/SideBar'
+import HomepageAfterLogin from '~/components/pages/homepage-after-login'
 export default {
   components: {
-    SideBar,
+    HomepageAfterLogin
+  },
+  data() {
+    return {
+      adminData: [
+        {
+          username: 'aadilah@seakun.id',
+          password: 'seakun#123'
+        },
+        {
+          username: 'faishal@seakun.id',
+          password: 'seakun#123'
+        }
+      ],
+      username: '',
+      password:'',
+      errorMsg: '',
+      isDisableBtn: false,
+      isLoggedIn: false
+    }
+  },
+  beforeMount() {
+    this.checkLoggedUser()
+  },
+  methods: {
+    checkLoggedUser() {
+      const expired = localStorage.getItem('expired') && localStorage.getItem('expired')
+      if (expired) {
+        Date.now() < expired ? this.isLoggedIn = true : this.isLoggedIn = false
+      } else {
+        this.isLoggedIn = false
+      }
+    },
+    clickLogin() {
+      if (!this.username || !this.password) {
+        this.errorMsg = 'Username atau Password wajib diisi'
+      } else {
+        this.errorMsg = ''
+        let arr = []
+        this.adminData.map(data => {
+          if (data.username == this.username && data.password == this.password) {
+            arr.push(1)
+          } else {
+            arr.push(0)
+          }
+        })
+        arr.sort().reverse()
+        if (arr[0] == 1) {
+          const fiveMinutes = 300000
+          let expired = Date.now() + fiveMinutes
+          localStorage.setItem('expired', expired)
+          this.isLoggedIn = true
+        }
+      }
+    }
   }
 }
 </script>
@@ -44,6 +91,15 @@ export default {
   &__right {
     width: 74%;
   }
+}
+
+.container {
+  margin: 0 auto;
+  min-height: 85vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
 .content {

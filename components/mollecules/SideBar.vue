@@ -14,7 +14,7 @@
                     </ul>
                 </transition>
             </li>
-            <li class="list-group-item">
+            <!-- <li class="list-group-item">
                 <p class="label" @click.prevent="spotify.isOpen = !spotify.isOpen">Spotify</p>
                 <transition name="slide-fade">
                     <ul class="sidebar__child" v-if="spotify.isOpen">
@@ -26,7 +26,7 @@
                         </li>
                     </ul>
                 </transition>
-            </li>
+            </li> -->
         </ul>
     </div>
 </template>
