@@ -202,12 +202,12 @@ export default {
       this.errorMsg.packet = ''
     },
     resetValue() {
-      this.name = '',
-      this.email = '',
-      this.packet = 'Contoh: Paket Premium Group (Family)',
-      this.username = '',
-      this.password = '',
-      this.pin = '',
+      this.name = ''
+      this.email = ''
+      this.packet = 'Contoh: Paket Premium Group (Family)'
+      this.username = ''
+      this.password = ''
+      this.pin = ''
     },
     onChangeName() {
       this.errorMsg.name = ''
