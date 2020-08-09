@@ -142,7 +142,18 @@ export default {
   mounted() {
     this.setBillingDate()
   },
+  beforeMount() {
+    this.checkLoggedUser()
+  },
   methods: {
+    checkLoggedUser() {
+      const expired = localStorage.getItem('expired') && localStorage.getItem('expired')
+      if (expired) {
+        Date.now() >= expired && (window.location = '/')
+      } else {
+        window.location = '/'
+      }
+    },
     validateInput() {
       !this.name ? this.errorMsg.name = 'Nama Lengkap User harus diisi' : this.errorMsg.fullname = ''
       !this.email ? this.errorMsg.email = 'Email User harus diisi' : this.errorMsg.email = ''

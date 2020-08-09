@@ -31,19 +31,6 @@ import SideBar from '~/components/mollecules/SideBar'
 export default {
     components: {
         SideBar,
-    },
-    beforeMount() {
-        this.checkLoggedUser()
-    },
-    methods: {
-        checkLoggedUser() {
-            const expired = localStorage.getItem('expired') && localStorage.getItem('expired')
-            if (expired) {
-                Date.now() >= expired && (window.location = '/')
-            } else {
-                window.location = '/'
-            }
-        }
     }
 }
 </script>
