@@ -184,7 +184,8 @@ export default {
         if (res) {
           this.isDisableBtn = false
           this.showSnackBar = true
-          console.log('Berhasil Kirim Akun ke Email User');
+          console.log('Berhasil Kirim Akun ke Email User')
+          this.resetValue()
         }
       })
       .catch(err => {
@@ -199,6 +200,14 @@ export default {
       this.packet = packet.name
       this.showPackets = false
       this.errorMsg.packet = ''
+    },
+    resetValue() {
+      this.name = '',
+      this.email = '',
+      this.packet = 'Contoh: Paket Premium Group (Family)',
+      this.username = '',
+      this.password = '',
+      this.pin = '',
     },
     onChangeName() {
       this.errorMsg.name = ''
