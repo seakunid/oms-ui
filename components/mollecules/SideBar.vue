@@ -1,15 +1,15 @@
 <template>
     <div align="left" class="sidebar">
         <ul class="list-group">
-            <li class="list-group-item">
+            <li class="list-group-item" style="padding: 0px!important">
                 <p class="label" @click.prevent="netflix.isOpen = !netflix.isOpen">Netflix</p>
                 <transition name="slide-fade">
                     <ul class="sidebar__child" v-if="netflix.isOpen">
-                        <li class="list-group-item child-list">
-                            <nuxt-link to="/created-account?provider=Netflix">Send Created Netflix Account</nuxt-link>
+                        <li class="list-group-item child-list" @click="$router.push('/created-account?provider=Netflix')">
+                            <a>Send Created Netflix Account</a>
                         </li>
-                        <li class="list-group-item child-list">
-                            <nuxt-link to="/billing?provider=Netflix">Send Billing</nuxt-link>
+                        <li class="list-group-item child-list" @click="$router.push('/billing?provider=Netflix')">
+                            <a>Send Billing</a>
                         </li>
                     </ul>
                 </transition>
@@ -54,9 +54,10 @@ export default {
     margin-left: 52px;
     .child-list {
         border: unset;
-        padding: 0px 0px 5px 0px;
+        padding: 9px 0px 9px 0px;
         &:hover {
-            color: #b1a2d1;
+            opacity: .7;
+            background-color: #e5dafc;
             cursor: pointer;
         }
     }
@@ -64,14 +65,24 @@ export default {
         cursor: pointer;
     }
     .label {
-        margin-bottom: 10px;
+        padding: 16px;
+        margin-bottom: 0px;
         &:hover {
-            color: #b1a2d1;
+            opacity: .7;
+            background-color: #e5dafc;
             cursor: pointer;
         }
     }
     &__child {
-        padding: 10px 0px 10px 16px;
+        padding: 0px;
+    }
+    a {
+        color: black;
+        text-decoration: unset;
+        padding: 0px 16px 0px 32px;
+        &:hover {
+            opacity: .7;
+        }
     }
 }
 </style>

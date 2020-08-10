@@ -6,17 +6,17 @@
       </div>
       <div class="layout__right">
         <div class="content">
-          <div>
-            <h1 class="title">
-              Welcome,
-            </h1>
+          <div style="padding: 0px 20px">
+            <h3 class="title">
+              Hello,
+            </h3>
             <div class="links">
               <a
                 target="_blank"
                 rel="noopener noreferrer"
                 class="button--green"
               >
-                Pilih menu pada Sidebar disamping
+                Silahkan pilih menu yang ada disamping
               </a>
             </div>
           </div>

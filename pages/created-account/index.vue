@@ -9,7 +9,7 @@
       @clickOk="clickOkModal"
       @clickCancel="openModal = false"
     >
-      <CreatedAccountNetflix
+      <CreatedAccount
         :name="name"
         :packet="packet"
         :provider="provider"
@@ -94,14 +94,14 @@
 import axios from 'axios'
 import SideBar from '~/components/mollecules/SideBar'
 import ButtonDrop from '~/components/atoms/ButtonDropDown'
-import CreatedAccountNetflix from '~/components/templates/mail/created-account-netflix'
+import CreatedAccount from '~/components/templates/mail/created-account'
 import Modal from '~/components/mollecules/Modal'
 import moment from 'moment'
 export default {
   components: {
     SideBar,
     ButtonDrop,
-    CreatedAccountNetflix,
+    CreatedAccount,
     Modal
   },
   data() {
@@ -155,12 +155,12 @@ export default {
       }
     },
     validateInput() {
-      !this.name ? this.errorMsg.name = 'Nama Lengkap User harus diisi' : this.errorMsg.fullname = ''
+      !this.name ? this.errorMsg.name = 'Nama Lengkap User harus diisi' : this.errorMsg.name = ''
       !this.email ? this.errorMsg.email = 'Email User harus diisi' : this.errorMsg.email = ''
       this.packet == 'Contoh: Paket Premium Group (Family)' ? this.errorMsg.packet = 'Paket harus dipilih' : this.errorMsg.packet = ''
       !this.username ? this.errorMsg.username = `Username ${this.provider} harus diisi` : this.errorMsg.username = ''
-      !this.password ? this.errorMsg.password = `Username ${this.provider} harus diisi` : this.errorMsg.password = ''
-      !this.pin ? this.errorMsg.pin = `Username ${this.provider} harus diisi` : this.errorMsg.pin = ''
+      !this.password ? this.errorMsg.password = `Password ${this.provider} harus diisi` : this.errorMsg.password = ''
+      !this.pin ? this.errorMsg.pin = `Pin ${this.provider} harus diisi` : this.errorMsg.pin = ''
     },
     clickSubmit() {
       this.validateInput()

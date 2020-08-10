@@ -71,10 +71,12 @@ export default {
         })
         arr.sort().reverse()
         if (arr[0] == 1) {
-          const fiveMinutes = 300000
-          let expired = Date.now() + fiveMinutes
+          const fiveTeenMinutes = 900000
+          let expired = Date.now() + fiveTeenMinutes
           localStorage.setItem('expired', expired)
           this.isLoggedIn = true
+        } else {
+          this.errorMsg = 'Username atau password salah'
         }
       }
     }
