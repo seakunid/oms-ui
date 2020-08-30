@@ -76,6 +76,11 @@
                   <input type="text" id="pin" name="pin" class="form-control" placeholder="Contoh: 1029" @keydown="onChangePin" v-model="pin">
                   <p class="error-msg" v-if="errorMsg.pin">{{ errorMsg.pin }}</p>
                 </div>
+                <p class="button-referral-code" @click="useReferralCode = !useReferralCode">Use Referral Code</p>
+                <div class="form-group" v-if="useReferralCode">
+                  <label for="referral-code">Referral Code</label>
+                  <input type="text" id="referral-code" name="referral-code" class="form-control" placeholder="Contoh: seakunid" v-model="referal_code">
+                </div>
               </div>
             </div>
 
@@ -114,6 +119,7 @@ export default {
       password: '',
       pin: '',
       billing_date: '',
+      referal_code: '',
       errorMsg: {
         name: '',
         email: '',
@@ -133,7 +139,8 @@ export default {
       ],
       isDisableBtn: false,
       openModal: false,
-      showSnackBar: false
+      showSnackBar: false,
+      useReferralCode: false
     }
   },
   created() {
@@ -189,7 +196,8 @@ export default {
         username: this.username,
         password: this.password,
         pin: this.pin,
-        billing_date: this.billing_date
+        billing_date: this.billing_date,
+        referal_code: this.referal_code
       }
       axios.post('https://seakun-mail-api.herokuapp.com/created-account', payload)
       .then(res => {
@@ -220,6 +228,7 @@ export default {
       this.username = ''
       this.password = ''
       this.pin = ''
+      this.referal_code = ''
     },
     onChangeName() {
       this.errorMsg.name = ''
@@ -306,6 +315,10 @@ export default {
       cursor: pointer;
       padding: 0px 12px;
     }
+  }
+  .button-referral-code {
+    color: blue;
+    cursor: pointer;
   }
 }
 </style>
