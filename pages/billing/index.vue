@@ -101,7 +101,7 @@ export default {
     return {
       fullname: '',
       email: '',
-      packet: 'Contoh: Paket Premium Group (Family)',
+      packet: 'Contoh: Paket Premium Grup',
       provider: this.$route.query.provider,
       price: '',
       lastActiveDate: '',
@@ -115,10 +115,8 @@ export default {
       },
       showPackets: false,
       packets: [
-        {name: 'Paket Premium Group (Family)'},
-        {name: 'Paket Mobile Personal'},
-        {name: 'Paket Basic Personal'},
-        {name: 'Paket Standar Personal'}
+        {name: 'Paket Premium Grup (USER REGULER)'},
+        {name: 'Paket Premium Grup (USER HOST)'},
       ],
       isDisableBtn: false,
       openModal: false,
@@ -143,7 +141,7 @@ export default {
     validateInput() {
       !this.fullname ? this.errorMsg.fullname = 'Nama Lengkap User harus diisi' : this.errorMsg.fullname = ''
       !this.email ? this.errorMsg.email = 'Email User harus diisi' : this.errorMsg.email = ''
-      this.packet == 'Contoh: Paket Premium Group (Family)' ? this.errorMsg.packet = 'Paket harus dipilih' : this.errorMsg.packet = ''
+      this.packet == 'Contoh: Paket Premium Grup' ? this.errorMsg.packet = 'Paket harus dipilih' : this.errorMsg.packet = ''
       !this.price ? this.errorMsg.price = `Biaya harus diisi` : this.errorMsg.price = ''
       !this.lastActiveDate ? this.errorMsg.lastActiveDate = 'Tanggal Terakhir Aktif layanan harus diisi' : this.errorMsg.lastActiveDate = ''
     },
@@ -152,7 +150,7 @@ export default {
       if (
         this.fullname && 
         this.email && 
-        this.packet != 'Contoh: Paket Premium Group (Family)' && 
+        this.packet != 'Contoh: Paket Premium Grup' && 
         this.price &&
         this.lastActiveDate
       ) {
@@ -194,7 +192,7 @@ export default {
     resetValue() {
       this.fullname = ''
       this.email = ''
-      this.packet = 'Contoh: Paket Premium Group (Family)'
+      this.packet = 'Contoh: Paket Premium Grup'
       this.price = ''
       this.lastActiveDate = ''
     },

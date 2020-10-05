@@ -113,7 +113,7 @@ export default {
     return {
       name: '',
       email: '',
-      packet: 'Contoh: Paket Premium Group (Family)',
+      packet: 'Contoh: Paket Premium Grup',
       provider: this.$route.query.provider,
       username: '',
       password: '',
@@ -132,10 +132,8 @@ export default {
       },
       showPackets: false,
       packets: [
-        {name: 'Paket Premium Group (Family)'},
-        {name: 'Paket Mobile Personal'},
-        {name: 'Paket Basic Personal'},
-        {name: 'Paket Standar Personal'}
+        {name: 'Paket Premium Grup (USER REGULER)'},
+        {name: 'Paket Premium Grup (USER HOST)'},
       ],
       isDisableBtn: false,
       openModal: false,
@@ -164,7 +162,7 @@ export default {
     validateInput() {
       !this.name ? this.errorMsg.name = 'Nama Lengkap User harus diisi' : this.errorMsg.name = ''
       !this.email ? this.errorMsg.email = 'Email User harus diisi' : this.errorMsg.email = ''
-      this.packet == 'Contoh: Paket Premium Group (Family)' ? this.errorMsg.packet = 'Paket harus dipilih' : this.errorMsg.packet = ''
+      this.packet == 'Contoh: Paket Premium Grup' ? this.errorMsg.packet = 'Paket harus dipilih' : this.errorMsg.packet = ''
       !this.username ? this.errorMsg.username = `Username ${this.provider} harus diisi` : this.errorMsg.username = ''
       !this.password ? this.errorMsg.password = `Password ${this.provider} harus diisi` : this.errorMsg.password = ''
       !this.pin ? this.errorMsg.pin = `Pin ${this.provider} harus diisi` : this.errorMsg.pin = ''
@@ -174,7 +172,7 @@ export default {
       if (
         this.name && 
         this.email && 
-        this.packet != 'Contoh: Paket Premium Group (Family)' && 
+        this.packet != 'Contoh: Paket Premium Grup' && 
         this.username &&
         this.password &&
         this.pin
@@ -224,7 +222,7 @@ export default {
     resetValue() {
       this.name = ''
       this.email = ''
-      this.packet = 'Contoh: Paket Premium Group (Family)'
+      this.packet = 'Contoh: Paket Premium Grup'
       this.username = ''
       this.password = ''
       this.pin = ''
