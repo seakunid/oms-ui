@@ -1,32 +1,19 @@
 <template>
     <div align="left" class="sidebar">
         <ul class="list-group">
-            <li class="list-group-item" style="padding: 0px!important">
-                <p class="label" @click.prevent="netflix.isOpen = !netflix.isOpen">Netflix</p>
+            <li class="list-group-item" style="padding: 0px!important" v-for="(provider, id) in providers" :key="id">
+                <p class="label" @click.prevent="provider.isOpen = !provider.isOpen">{{ provider.name }}</p>
                 <transition name="slide-fade">
-                    <ul class="sidebar__child" v-if="netflix.isOpen">
-                        <li class="list-group-item child-list" @click="$router.push('/created-account?provider=Netflix')">
-                            <a>Send Created Netflix Account</a>
+                    <ul class="sidebar__child" v-if="provider.isOpen">
+                        <!-- <li class="list-group-item child-list px-4" @click="$router.push(`/created-account?provider=${provider.name}`)">
+                            Send Created {{ provider.name }} Account
                         </li>
-                        <li class="list-group-item child-list" @click="$router.push('/billing?provider=Netflix')">
-                            <a>Send Billing</a>
-                        </li>
+                        <li class="list-group-item child-list px-4" @click="$router.push(`/billing?provider=${provider.name}`)">Send Billing</li> -->
+                        <li class="list-group-item child-list px-4" @click="$router.push(`/reminders/r1?provider=${provider.name}`)">Reminder 1 (R1)</li> 
+                        <li class="list-group-item child-list px-4" @click="$router.push(`/reminders/r2?provider=${provider.name}`)">Expired Reminder (R2)</li>
                     </ul>
                 </transition>
             </li>
-            <!-- <li class="list-group-item">
-                <p class="label" @click.prevent="spotify.isOpen = !spotify.isOpen">Spotify</p>
-                <transition name="slide-fade">
-                    <ul class="sidebar__child" v-if="spotify.isOpen">
-                        <li class="list-group-item child-list">
-                            <nuxt-link to="/created-account?provider=Spotify">Send Created Spotify Account</nuxt-link>
-                        </li>
-                        <li class="list-group-item child-list">
-                            <nuxt-link to="/billing?provider=Spotify">Send Billing</nuxt-link>
-                        </li>
-                    </ul>
-                </transition>
-            </li> -->
         </ul>
     </div>
 </template>
@@ -43,6 +30,38 @@ export default {
                 isOpen: false,
                 active: true
             },
+            providers: [
+                {
+                    name: 'Netflix',
+                    isOpen: true,
+                    active: true
+                },
+                {
+                    name: 'Spotify',
+                    isOpen: false,
+                    active: true
+                },
+                {
+                    name: 'Gramedia',
+                    isOpen: false,
+                    active: true
+                },
+                {
+                    name: 'Youtube',
+                    isOpen: false,
+                    active: true
+                },
+                {
+                    name: 'Microsoft365',
+                    isOpen: false,
+                    active: true
+                },
+                {
+                    name: 'Canva',
+                    isOpen: false,
+                    active: true
+                }
+            ]
         }
     }
 }

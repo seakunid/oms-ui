@@ -4,7 +4,7 @@
       <div class="layout__left">
         <SideBar/>
       </div>
-      <NuxtChild/>
+      <nuxt-child/>
     </div>
   </div>
 </template>
