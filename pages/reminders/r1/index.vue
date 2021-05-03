@@ -3,7 +3,6 @@
     <div class="layout__left">
       <div class="user card" v-for="(user, id) in users" :key="id" style="margin-top: 15px">
         <div class="card-body">
-          <button class="btn btn-secondary px-3 mb-3" @click="handleCopyRekening(user)">Copy Template</button>
           <TemplateWhatsappNetflix
             :user="user"
           />
@@ -51,25 +50,11 @@ export default {
           expiredDate: "10 Mei 2021",
         }
       ],
-      elementText: '',
       showSnackBar: false,
     }
   },
   methods: {
-    handleCopyRekening(user) {
-      const templateElement = document.getElementById(`template-${user.email}`)
-      this.elementText = templateElement.textContent
-
-      navigator.clipboard.writeText(this.elementText).then(
-        () => {
-          this.showSnackBar = true;
-          setTimeout(() => {
-            this.showSnackBar = false;
-          }, 2000);
-        },
-        (err) => console.log(err)
-      );
-    }
+    
   }
 
 }
