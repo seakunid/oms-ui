@@ -4,7 +4,9 @@
       <a :href="`https://wa.me/${reminder.whatsapp}?text=${encodeURI(reminder.message)}`" target="_blank">Redirect to whatsapp {{ reminder.name }} {{ reminder.whatsapp }}</a>
       <button class="btn btn-secondary px-3 mb-3" @click="handleCopyTemplate(reminder)">Copy Template</button>
     </div>
-    <div style="text-align: center"><textarea name="" id="" cols="106" rows="8" :value="reminder.message" disabled></textarea></div>
+    <div style="text-align: center">
+      <textarea style="width: 100%" name="" id="" rows="8" :value="reminder.message" disabled></textarea>
+    </div>
 
     <transition name="slide-fade">
       <div v-if="showSnackBar" id="snackbar">
