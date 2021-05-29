@@ -33,7 +33,7 @@ export default {
   },
   data() {
     return {
-      REMINDER_URL: 'https://seakun-reminder-api.herokuapp.com',
+      REMINDER_URL: 'https://seakun-reminder-api-v2.herokuapp.com',
       dataReminders: [],
       provider: '',
       showLoading: true
