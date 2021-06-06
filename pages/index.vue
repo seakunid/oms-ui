@@ -21,6 +21,8 @@
 
 <script>
 import HomepageAfterLogin from '~/components/pages/homepage-after-login'
+import axios from 'axios'
+
 export default {
   components: {
     HomepageAfterLogin
@@ -56,21 +58,13 @@ export default {
         this.isLoggedIn = false
       }
     },
-    clickLogin() {
+    async clickLogin() {
       if (!this.username || !this.password) {
         this.errorMsg = 'Username atau Password wajib diisi'
       } else {
         this.errorMsg = ''
-        let arr = []
-        this.adminData.map(data => {
-          if (data.username == this.username && data.password == this.password) {
-            arr.push(1)
-          } else {
-            arr.push(0)
-          }
-        })
-        arr.sort().reverse()
-        if (arr[0] == 1) {
+         const checkCredential = await this.fetchLogin(this.username,this.password)
+        if (checkCredential) {
           const fiveTeenMinutes = 900000
           let expired = Date.now() + fiveTeenMinutes
           localStorage.setItem('expired', expired)
@@ -79,6 +73,23 @@ export default {
           this.errorMsg = 'Username atau password salah'
         }
       }
+    },
+    async fetchLogin(username,password){
+      try {
+        const checkCredential = await axios.post('https://seakun-packet-api-v1.herokuapp.com/signin',{
+            username,
+            password
+        })
+
+        if (checkCredential.status == 200){
+          return true
+        }
+                
+      } catch (error) {
+        console.log(error)
+      }
+
+      return false
     }
   }
 }
