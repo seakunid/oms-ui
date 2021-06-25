@@ -197,7 +197,7 @@ export default {
         billing_date: this.billing_date,
         referal_code: this.referal_code
       }
-      axios.post('https://seakun-mail-api-v1.herokuapp.com/created-account', payload)
+      axios.post('https://seakun-mail-api-v2.herokuapp.com/created-account', payload)
       .then(res => {
         if (res) {
           this.isDisableBtn = false

@@ -171,7 +171,7 @@ export default {
         price: `Rp${this.price.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.')}`,
         last_active_date: this.returnValueDate(this.lastActiveDate)
       }
-      axios.post('https://seakun-mail-api-v1.herokuapp.com/billing', payload)
+      axios.post('https://seakun-mail-api-v2.herokuapp.com/billing', payload)
       .then(res => {
         if (res) {
           this.isDisableBtn = false
