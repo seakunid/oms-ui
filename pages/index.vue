@@ -1,16 +1,42 @@
 <template>
   <div>
     <div v-if="isLoggedIn">
-      <HomepageAfterLogin/>
+      <HomepageAfterLogin />
     </div>
     <div v-else>
       <div class="container">
         <form>
-          <input v-model="username" type="text" id="username" name="username" class="form-control" placeholder="username" style="margin: 16px 0px">
-          <input v-model="password" type="password" id="password" name="password" class="form-control" placeholder="password" style="margin: 16px 0px">
-          <p v-if="errorMsg">{{errorMsg}}</p>
-          <button class="btn btn-primary" @click.prevent="clickLogin" :disabled="isDisableBtn" style="min-width: 6rem;">
-            <span v-if="isDisableBtn" class="spinner-border spinner-border-sm text-dark" role="status" aria-hidden="true"></span>
+          <input
+            v-model="username"
+            type="text"
+            id="username"
+            name="username"
+            class="form-control"
+            placeholder="username"
+            style="margin: 16px 0px"
+          />
+          <input
+            v-model="password"
+            type="password"
+            id="password"
+            name="password"
+            class="form-control"
+            placeholder="password"
+            style="margin: 16px 0px"
+          />
+          <p v-if="errorMsg">{{ errorMsg }}</p>
+          <button
+            class="btn btn-primary"
+            @click.prevent="clickLogin"
+            :disabled="isDisableBtn"
+            style="min-width: 6rem;"
+          >
+            <span
+              v-if="isDisableBtn"
+              class="spinner-border spinner-border-sm text-dark"
+              role="status"
+              aria-hidden="true"
+            ></span>
             Masuk
           </button>
         </form>
@@ -20,8 +46,8 @@
 </template>
 
 <script>
-import HomepageAfterLogin from '~/components/pages/homepage-after-login'
-import axios from 'axios'
+import HomepageAfterLogin from "~/components/pages/homepage-after-login";
+import axios from "axios";
 
 export default {
   components: {
@@ -31,68 +57,76 @@ export default {
     return {
       adminData: [
         {
-          username: 'aadilah@seakun.id',
-          password: 'seakun#123'
+          username: "aadilah@seakun.id",
+          password: "seakun#123"
         },
         {
-          username: 'faishal@seakun.id',
-          password: 'seakun#123'
+          username: "faishal@seakun.id",
+          password: "seakun#123"
         }
       ],
-      username: '',
-      password:'',
-      errorMsg: '',
+      username: "",
+      password: "",
+      errorMsg: "",
       isDisableBtn: false,
       isLoggedIn: false
-    }
+    };
   },
   beforeMount() {
-    this.checkLoggedUser()
+    this.checkLoggedUser();
   },
   methods: {
     checkLoggedUser() {
-      const expired = localStorage.getItem('expired') && localStorage.getItem('expired')
+      const expired =
+        localStorage.getItem("expired") && localStorage.getItem("expired");
       if (expired) {
-        Date.now() < expired ? this.isLoggedIn = true : this.isLoggedIn = false
+        Date.now() < expired
+          ? (this.isLoggedIn = true)
+          : (this.isLoggedIn = false);
       } else {
-        this.isLoggedIn = false
+        this.isLoggedIn = false;
       }
     },
     async clickLogin() {
       if (!this.username || !this.password) {
-        this.errorMsg = 'Username atau Password wajib diisi'
+        this.errorMsg = "Username atau Password wajib diisi";
       } else {
-        this.errorMsg = ''
-         const checkCredential = await this.fetchLogin(this.username,this.password)
+        this.errorMsg = "";
+        const checkCredential = await this.fetchLogin(
+          this.username,
+          this.password
+        );
         if (checkCredential) {
-          const fiveTeenMinutes = 900000
-          let expired = Date.now() + fiveTeenMinutes
-          localStorage.setItem('expired', expired)
-          this.isLoggedIn = true
+          const fiveTeenMinutes = 900000;
+          let expired = Date.now() + fiveTeenMinutes;
+          localStorage.setItem("expired", expired);
+          this.isLoggedIn = true;
         } else {
-          this.errorMsg = 'Username atau password salah'
+          this.errorMsg = "Username atau password salah";
         }
       }
     },
-    async fetchLogin(username,password){
+    async fetchLogin(username, password) {
       try {
-        const checkCredential = await axios.post('https://seakun-packet-api-v2.herokuapp.com/signin',{
+        const checkCredential = await axios.post(
+          "https://seakun-packet-api-v1.herokuapp.com/signin",
+          {
             username,
             password
-        })
+          }
+        );
 
-        if (checkCredential.status == 200){
-          return true
+        if (checkCredential.status == 200) {
+          return true;
         }
-                
       } catch (error) {
-        console.log(error)
+        console.log(error);
       }
 
-      return false
+      return false;
     }
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>
@@ -120,16 +154,8 @@ export default {
 }
 
 .title {
-  font-family:
-    'Quicksand',
-    'Source Sans Pro',
-    -apple-system,
-    BlinkMacSystemFont,
-    'Segoe UI',
-    Roboto,
-    'Helvetica Neue',
-    Arial,
-    sans-serif;
+  font-family: "Quicksand", "Source Sans Pro", -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   display: block;
   font-weight: 300;
   font-size: 100px;
