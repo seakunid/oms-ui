@@ -52,7 +52,7 @@ export default {
       this.provider = this.$route.query.provider;
       try {
         const { data } = await axios.post(
-          `${this.REMINDER_URL}/${this.provider.toLowerCase()}/r1`,
+          `${this.REMINDER_URL}/${this.setProvider(this.provider)}/r1`,
           requestBody
         );
         if (data) {
@@ -62,6 +62,17 @@ export default {
         console.log(err);
       }
       this.showLoading = false;
+    },
+    setProvider(provider) {
+      const theProvider = provider.toLowerCase();
+      console.log(theProvider);
+      if (theProvider === "disney  hotstar") {
+        return "disney-hotstar";
+      } else if (theProvider === "apple one") {
+        return "apple-one";
+      } else {
+        return theProvider;
+      }
     }
   },
   watch: {
