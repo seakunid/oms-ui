@@ -70,6 +70,8 @@ export default {
         return "disney-hotstar";
       } else if (theProvider === "apple one") {
         return "apple-one";
+      } else if (theProvider === "google one") {
+        return "google-one";
       } else {
         return theProvider;
       }

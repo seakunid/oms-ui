@@ -92,6 +92,11 @@ export default {
           name: "Wattpad",
           isOpen: false,
           active: true
+        },
+        {
+          name: "Google One",
+          isOpen: false,
+          active: true
         }
       ]
     };
